@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/harjoitusdb
+    username: harjoitususer
+    password: harjoituspassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update # Luo taulut automaattisesti, jos ne puuttuvat
+    show-sql: true # Näyttää SQL-kyselyt konsolissa (hyvä kehityksessä)

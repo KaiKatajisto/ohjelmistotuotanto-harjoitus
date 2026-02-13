@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    # Nämä arvot ylikirjoitetaan palvelimella ympäristömuuttujilla
+    url: jdbc:postgresql://db:5432/proddb
+    username: ${PROD_DB_USER}
+    password: ${PROD_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate # Tuotannossa ei saa enää muutella tauluja automaattisesti
