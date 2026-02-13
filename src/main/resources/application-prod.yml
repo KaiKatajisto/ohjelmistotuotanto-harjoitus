@@ -6,4 +6,4 @@ spring:
     password: ${PROD_DB_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: validate # Tuotannossa ei saa enää muutella tauluja automaattisesti
+      ddl-auto: update
