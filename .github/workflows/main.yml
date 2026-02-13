@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+# Milloin robotti / ohjeet herää?
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Hae koodi repositoriosta
+    - uses: actions/checkout@v4
+    
+    # 2. Asenna Java 17 (sama kuin koneellasi)
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    # 3. Anna suoritusoikeudet Maven-wrapperille (tärkeä Linux-ympäristössä)
+    - name: Grant execute permission for mvnw
+      run: chmod +x mvnw
+
+    # 4. Aja testit käyttäen 'test'-profiilia
+    # Tämä käyttää application-test.yml -tiedostoa ja H2-tietokantaa
+    - name: Run Tests
+      run: ./mvnw test
+      env:
+        SPRING_PROFILES_ACTIVE: test
